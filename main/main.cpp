@@ -1,20 +1,49 @@
-// main.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <chrono>
+#include <fstream>
+#include <iomanip>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include "algorithms.h"
+#include "data.h"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+template <typename T>
+void write_results_to_file(const std::string& algorithm_name, const std::vector<T>& sortedData, double duration) {
+    std::ofstream outFile("results.txt", std::ios::app);
+    if (outFile.is_open()) {
+        outFile << "Результаты для алгоритма: " << algorithm_name << "\n";
+        outFile << "Отсортированные данные: ";
+        for (T num : sortedData) {
+            outFile << num << " ";
+        }
+        outFile << "\nВремя выполнения: " << std::fixed << std::setprecision(8) << duration << " секунд\n\n";
+        outFile.close();
+        std::cout << "Результаты записаны в results.txt" << std::endl;
+    }
+    else {
+        std::cerr << "Не удалось открыть файл results.txt" << std::endl;
+    }
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+template <typename T, typename Algorithm>
+void Run(const std::string& method_name, Algorithm algorithm, const std::vector<T>& data) {
+    auto start = std::chrono::system_clock::now();
+    std::vector<T> res = algorithm(data);
+    auto stop = std::chrono::system_clock::now();
+    auto time = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+    write_results_to_file(method_name, res, static_cast<double>(time) / 1e6);
+}
+
+int main() {
+    setlocale(LC_ALL, "RU");
+
+    Run<int>("Algorithm 1 - data1", algorithm1<int>, data1);
+
+    Run<double>("Algorithm 1 - data2", algorithm1<double>, data2);
+
+    Run<int>("Algorithm 1 - data3", algorithm1<int>, random_ints);
+    return 0;
+}

@@ -1,6 +1,5 @@
 #include "algorithms.h"
 #include <algorithm>
-
 // Реализация алгоритма 1 (стандартная сортировка)
 template <typename T>
 std::vector<T> algorithm1(std::vector<T> data)

@@ -40,10 +40,10 @@ void Run(const std::string& method_name, Algorithm algorithm, const std::vector<
 int main() {
     setlocale(LC_ALL, "RU");
 
-    Run<int>("Algorithm 1 - data1", algorithm1<int>, data1);
+    Run<int>("Kochetov_TreeSort - data1", Kochetov_TreeSort<int>, data1);
 
-    Run<double>("Algorithm 1 - data2", algorithm1<double>, data2);
+    Run<double>("Kochetov_TreeSort - data2", Kochetov_TreeSort<double>, data2);
 
-    Run<int>("Algorithm 1 - data3", algorithm1<int>, random_ints);
+    Run<int>("Kochetov_TreeSort - data3", Kochetov_TreeSort<int>, random_ints);
     return 0;
 }

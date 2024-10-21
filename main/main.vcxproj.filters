@@ -21,6 +21,9 @@
     <ClCompile Include="algorithm1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Kochetov_TreeSort.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algorithms.h">

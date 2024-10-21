@@ -1,78 +1,69 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <chrono>
-#include <set>
-#define SIZE 5000
+#include <vector>
+#include <algorithm>
+#include "algorithms.h"
 
-using namespace std;
 //Структура - узел дерева
+template <typename T>
 struct TNode {
-    int field;
+    T field;
     TNode* left;
     TNode* right;
 
-    TNode(int x) : field(x), left(nullptr), right(nullptr) {}
+    TNode(T x) : field(x), left(nullptr), right(nullptr) {}
 };
 
-//Вывод узлов дерева (обход в инфиксной форме)
-void treePrint(TNode* tree) {
-    if (tree != nullptr) {
-        treePrint(tree->left);
-        cout << tree->field << " ";
-        treePrint(tree->right);
-    }
-}
-
 //Добавление узлов в дерево
-TNode* addNode(int x, TNode* tree) {
+template <typename T>
+TNode<T>* addNode(TNode<T>* tree, T x) {
     if (tree == nullptr) {
-        return new TNode(x);
+        return new TNode<T>(x);
     }
     if (x < tree->field) {
-        tree->left = addNode(x, tree->left);
+        tree->left = addNode(tree->left, x);
     }
     else {
-        tree->right = addNode(x, tree->right);
+        tree->right = addNode(tree->right, x);
     }
     return tree;
 }
 
+//Инфиксный обход для извлечения отсортированных данных
+template <typename T>
+void inorder(TNode<T>* tree, std::vector<T>& sorted) {
+    if (tree != nullptr) {
+        inorder(tree->left, sorted);
+        sorted.push_back(tree->field);
+        inorder(tree->right, sorted);
+    }
+}
+
 //Освобождение памяти дерева
-void freeMem(TNode* tree) {
+template <typename T>
+void freeMem(TNode<T>* tree) {
     if (tree != nullptr) {
         freeMem(tree->left);
         freeMem(tree->right);
         delete tree;
     }
 }
-//генерирование уникальных целых чисел
-void generateUniqueNumbers(int* arr, int size, int min, int max) {
-    set<int> uniqueNumbers;
-    while (uniqueNumbers.size() < size) {
-        uniqueNumbers.insert(rand() % (max - min + 1) + min);
+
+//Основная функция сортировки
+template <typename T>
+std::vector<T> Kochetov_TreeSort(std::vector<T> data) {
+    TNode<T>* root = nullptr;
+    for (const T& item : data) {
+        root = addNode(root, item);
     }
-    copy(uniqueNumbers.begin(), uniqueNumbers.end(), arr);
-}
 
-int main() {
-    srand(static_cast<unsigned int>(time(0)));
-    int arr[SIZE];
+    std::vector<T> sorted;
+    inorder(root, sorted);
 
-    //Генерация 20 уникальных случайных чисел
-    generateUniqueNumbers(arr, SIZE, 1, 50000);
-
-    TNode* root = nullptr;
-    auto start = chrono::high_resolution_clock::now();
-    for (int i = 0; i < SIZE; i++) {
-        root = addNode(arr[i], root);
-    }
-    auto end = chrono::high_resolution_clock::now();
-    chrono::duration<double, micro> dur = end - start;
-    cout << "Отсортированные числа: ";
-    treePrint(root);
-    cout << endl;
-    cout << "Время выполнения сортировки: " << dur.count() << " микросекунд" << endl;
     freeMem(root);
-    return 0;
+
+    return sorted; 
 }
+
+// Явная специализация для int 
+template std::vector<int> Kochetov_TreeSort(std::vector<int> data);
+template std::vector<double> Kochetov_TreeSort(std::vector<double> data);

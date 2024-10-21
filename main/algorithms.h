@@ -3,6 +3,6 @@
 #include <algorithm>
 
 template <typename T>
-std::vector<T> algorithm1(std::vector<T> data);
+std::vector<T> Kochetov_TreeSort(std::vector<T> data);
 
 

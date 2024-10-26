@@ -45,5 +45,13 @@ int main() {
     Run<double>("Kochetov_TreeSort - data2", Kochetov_TreeSort<double>, data2);
 
     Run<int>("Kochetov_TreeSort - data3", Kochetov_TreeSort<int>, random_ints);
+
+
+    Run<int>("Khabarov_BucketSort - data1", Khabarov_BucketSort<int>, data1);
+
+    Run<double>("Khabarov_BucketSort - data2", Khabarov_BucketSort<double>, data2);
+
+    Run<int>("Khabarov_BucketSort - data3", Khabarov_BucketSort<int>, random_ints);
     return 0;
 }
+

@@ -40,11 +40,11 @@ void Run(const std::string& method_name, Algorithm algorithm, const std::vector<
 int main() {
     setlocale(LC_ALL, "RU");
 
-    Run<int>("Kochetov_TreeSort - data1", Kochetov_TreeSort<int>, data1);
+    Run<int>("Kochetov_smoothsort - data1", Kochetov_TreeSort<int>, data1);
 
-    Run<double>("Kochetov_TreeSort - data2", Kochetov_TreeSort<double>, data2);
+    Run<double>("Kochetov_smoothsort - data2", Kochetov_TreeSort<double>, data2);
 
-    Run<int>("Kochetov_TreeSort - data3", Kochetov_TreeSort<int>, random_ints);
+    Run<int>("Kochetov_smoothort - data3", Kochetov_TreeSort<int>, random_ints);
 
 
     Run<int>("Khabarov_BucketSort - data1", Khabarov_BucketSort<int>, data1);

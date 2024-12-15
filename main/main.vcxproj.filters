@@ -24,7 +24,7 @@
     <ClCompile Include="Kochetov_smoothsort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Khabarov_BucketSort.cpp">
+    <ClCompile Include="Khabarov_introspectiveSort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

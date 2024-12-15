@@ -128,7 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="algorithm1.cpp" />
-    <ClCompile Include="Khabarov_BucketSort.cpp" />
+    <ClCompile Include="Khabarov_introspectiveSort.cpp" />
     <ClCompile Include="Kochetov_smoothsort.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

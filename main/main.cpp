@@ -51,7 +51,14 @@ int main() {
 
     Run<double>("Khabarov_introspectiveSort - data2", Khabarov_introspectiveSort<double>, data2);
 
-    Run<int>("Khabarov_introspectiveSort - data3", Khabarov_introspectiveSort<int>, random_ints);
+    Run<int>("Khabarov_BucketSort - data3", Khabarov_BucketSort<int>, random_ints);
+
+
+    Run<int>("Osharov_flashsort - data1", Osharov_flashsort<int>, data1);
+
+    Run<double>("Osharov_flashsort - data2", Osharov_flashsort<double>, data2);
+
+    Run<int>("Osharov_flashsort - data3", Osharov_flashsort<int>, random_ints);
     return 0;
 }
 

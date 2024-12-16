@@ -4,10 +4,10 @@
 #include "algorithms.h"
 
 template <typename T>
-std::pair<T,T> findMinMax(const std::vector<T>& data) {
-    int minVal = data[0];
-    int maxVal = data[0];
-    for (int num : data) {
+std::pair<T, T> findMinMax(const std::vector<T>& data) {
+    T minVal = data[0];
+    T maxVal = data[0];
+    for (T num : data) {
         if (num < minVal) minVal = num;
         if (num > maxVal) maxVal = num;
     }
@@ -23,11 +23,11 @@ void flashSort(std::vector<T>& data) {
 
     if (minVal == maxVal) return;
 
-    int m = static_cast<T>(0.2 * n);
+    int m = static_cast<int>(0.2 * n);
     std::vector<T> L(m, 0);
 
     for (int i = 0; i < n; i++) {
-        int index = (m - 1) * (data[i] - minVal) / (maxVal - minVal);
+        int index = static_cast<int>((m - 1) * (data[i] - minVal) / (maxVal - minVal));
         L[index]++;
     }
 
@@ -37,10 +37,8 @@ void flashSort(std::vector<T>& data) {
 
     std::vector<T> temp(n);
     for (int i = n - 1; i >= 0; i--) {
-        int value = data[i];
-        int index = (m - 1) * (value - minVal) / (maxVal - minVal);
-
-        temp[L[index] - 1] = value;
+        int index = static_cast<int>((m - 1) * (data[i] - minVal) / (maxVal - minVal));
+        temp[L[index] - 1] = data[i];
         L[index]--;
     }
 

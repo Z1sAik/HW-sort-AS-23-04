@@ -57,20 +57,8 @@ void dualpivotsort_rec(std::vector<T>& data, int low, int high) {
 // Основная функция сортировки с двумя опорными элементами
 template <typename T>
 std::vector<T> dualpivotsort(std::vector<T> data) {
-    std::cout << "Initial array: ";
-    for (const auto& val : data) {
-        std::cout << val << " ";
-    }
-    std::cout << std::endl;
-
+    // Функция сортировки теперь не выводит массив, а просто возвращает отсортированный
     dualpivotsort_rec(data, 0, data.size() - 1);
-
-    std::cout << "Sorted array: ";
-    for (const auto& val : data) {
-        std::cout << val << " ";
-    }
-    std::cout << std::endl;
-
     return data;
 }
 

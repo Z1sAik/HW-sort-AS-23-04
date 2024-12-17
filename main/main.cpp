@@ -13,17 +13,17 @@ template <typename T>
 void write_results_to_file(const std::string& algorithm_name, const std::vector<T>& sortedData, double duration) {
     std::ofstream outFile("results.txt", std::ios::app);
     if (outFile.is_open()) {
-        outFile << "Результаты для алгоритма: " << algorithm_name << "\n";
-        outFile << "Отсортированные данные: ";
+        outFile << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << algorithm_name << "\n";
+        outFile << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: ";
         for (T num : sortedData) {
             outFile << num << " ";
         }
-        outFile << "\nВремя выполнения: " << std::fixed << std::setprecision(8) << duration << " секунд\n\n";
+        outFile << "\nпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: " << std::fixed << std::setprecision(8) << duration << " пїЅпїЅпїЅпїЅпїЅпїЅ\n\n";
         outFile.close();
-        std::cout << "Результаты записаны в results.txt" << std::endl;
+        std::cout << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ results.txt" << std::endl;
     }
     else {
-        std::cerr << "Не удалось открыть файл results.txt" << std::endl;
+        std::cerr << "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ results.txt" << std::endl;
     }
 }
 
@@ -59,6 +59,13 @@ int main() {
     Run<double>("Osharov_flashsort - data2", Osharov_flashsort<double>, data2);
 
     Run<int>("Osharov_flashsort - data3", Osharov_flashsort<int>, random_ints);
+
+    Run<int>("Sliunchenko_dualpivotsort - data1", dualpivotsort<int>, data1);
+
+    Run<double>("Sliunchenko_dualpivotsort - data2", dualpivotsort<double>, data2);
+
+    Run<int>("Sliunchenko_dualpivotsort - data3", dualpivotsort<int>, random_ints);
+
     return 0;
 }
 
